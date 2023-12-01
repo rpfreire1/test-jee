@@ -1,0 +1,16 @@
+apply plugin: 'java'
+apply plugin: 'jacoco'
+apply plugin: 'war'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api
+    implementation 'org.apache.logging.log4j:log4j-api:2.22.0'
+
+    providedCompile 'javax:javaee-web-api:8.0'
+
+    testImplementation     'junit:junit:4.13'
+}
