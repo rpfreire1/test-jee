@@ -5,6 +5,7 @@ import vehicle.wa.model.VehicleRegistry;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.util.Date;
 import java.util.List;
 
 @Stateless
@@ -20,5 +21,10 @@ public class VehicleRegistryServiceImpl implements VehicleRegistryService{
     @Override
     public VehicleRegistry createVehicleRegistry(VehicleRegistry vehicleRegistry) {
         return vehicleRegistryDao.insertVehicleRegistry(vehicleRegistry);
+    }
+
+    @Override
+    public List<VehicleRegistry> maintenanceVehicles(Date dateLastMaintenance) {
+        return vehicleRegistryDao.findVehiclesByLastMaintenanceDate(dateLastMaintenance);
     }
 }

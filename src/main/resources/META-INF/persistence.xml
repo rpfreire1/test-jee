@@ -17,7 +17,8 @@
         <property name="eclipselink.logging.level.sql" value="FINE" />
         <property name="eclipselink.loggin.parameters" value="true" />
     </properties>
-    -->
+    --><class>vehicle.wa.model.Vehicle</class>
+        <class>vehicle.wa.model.VehicleRegistry</class>
 </persistence-unit>
 </persistence>
 

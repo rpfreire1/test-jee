@@ -6,12 +6,10 @@ package vehicle.wa.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
 import javax.persistence.*;
 
 @Entity
-@NamedQueries({
-        @NamedQuery(name = "VehicleRegistry.findAll", query="Select v from VehicleRegistry v order by v.id")
-})
 @Table(name = "vehicle_register")
 public class VehicleRegistry implements Serializable  {
      private static final long serialVersionUID=1L;
@@ -20,8 +18,9 @@ public class VehicleRegistry implements Serializable  {
     @Column(name = "VREG_CODE")
     private Integer id;
     
-    private LocalDate purchasedDate;
+    private Date purchasedDate;
     private String comments;
+    private Date lastMaintenanceDate;
     @ManyToOne(
             cascade = CascadeType.ALL, fetch = FetchType.LAZY
     )
@@ -30,11 +29,11 @@ public class VehicleRegistry implements Serializable  {
     public VehicleRegistry() {
     }
 
-    
-    public VehicleRegistry(Integer id, LocalDate purchasedDate, String comments, Vehicle vehicle) {
+    public VehicleRegistry(Integer id, Date purchasedDate, String comments, Date lastMaintenanceDate, Vehicle vehicle) {
         this.id = id;
         this.purchasedDate = purchasedDate;
         this.comments = comments;
+        this.lastMaintenanceDate = lastMaintenanceDate;
         this.vehicle = vehicle;
     }
 
@@ -46,11 +45,11 @@ public class VehicleRegistry implements Serializable  {
         this.id = id;
     }
 
-    public LocalDate getPurchasedDate() {
+    public Date getPurchasedDate() {
         return purchasedDate;
     }
 
-    public void setPurchasedDate(LocalDate purchasedDate) {
+    public void setPurchasedDate(Date purchasedDate) {
         this.purchasedDate = purchasedDate;
     }
 
@@ -72,8 +71,12 @@ public class VehicleRegistry implements Serializable  {
 
     @Override
     public String toString() {
-        return "VehicleRegistry{" + "id=" + id + ", purchasedDate=" + purchasedDate + ", comments=" + comments + '}';
+        return "VehicleRegistry{" +
+                "id=" + id +
+                ", purchasedDate=" + purchasedDate +
+                ", comments='" + comments + '\'' +
+                ", lastMaintenanceDate=" + lastMaintenanceDate +
+                ", vehicle=" + vehicle +
+                '}';
     }
-    
-    
 }
